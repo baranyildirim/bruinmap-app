@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 
+
 MapboxGL.setAccessToken('pk.eyJ1IjoiYmFyYW55aWxkaXJpbSIsImEiOiJjamR2ZHd5dWwzb3hoMndvNGRod2NwdGI3In0.AG90Y3pom5hxlMhw9fpvyw');
 
 
@@ -24,6 +25,7 @@ export default class Map extends Component {
             pitch={0}
             style={styles.container}
             animated={true}
+            logoEnabled={false}
             >
           </MapboxGL.MapView>
         </View>
