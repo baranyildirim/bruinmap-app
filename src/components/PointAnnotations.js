@@ -16,10 +16,11 @@ export async function createPointAnnotations(){
     for(var i = 0; i < eventsCoordinates.length; i++){
         PointAnnotations.push(<MapboxGL.PointAnnotation 
                             key={`${i}`}
-                            title={eventsNames[i]}
                             id={`id${i}`}
                             coordinate={eventsCoordinates[i].coordinates}
-                        />);
+                        ><MapboxGL.Callout
+                            title={eventsNames[i]}
+                        /></MapboxGL.PointAnnotation>);
     }
     console.log("Point Annotations", PointAnnotations);
     return PointAnnotations;
