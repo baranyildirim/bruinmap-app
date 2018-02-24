@@ -5,7 +5,7 @@ var today = new Date()
 var date = `${today.getMonth()+1}.${today.getDate()}.${today.getFullYear()}`;
 //console.log(date);
 var apiUrl = `http://api.ucladevx.com/events/event-date/${date}`;
-//console.log(apiUrl);
+
 
 function getTodaysEventsFromApi(){
     return fetch(apiUrl)
@@ -19,16 +19,15 @@ function getTodaysEventsFromApi(){
       });
 }
 
-function getTodaysEventsCoordinates(result){
-    //console.log(result);
+export async function getTodaysEventsCoordinates(){
+    var promise = Promise.resolve(getTodaysEventsFromApi());
+    var result = await promise;
+    console.log("result", result);
     var events = new Array();
-    var marker = new Object();
 
-    marker.coordinates =[0,0];
-
-    for(var i in result){
+    for(var i = 0; i < result.length; i++){
+        let marker = new Object();
         marker.coordinates = result[i].geometry.coordinates;
-        //console.log(marker);
         events.push(marker);
     }
     //console.log(marker);
@@ -36,30 +35,19 @@ function getTodaysEventsCoordinates(result){
     return events;
 }
 
-function getTodaysEventsNames(result){
-   //console.log(result);
+export async function getTodaysEventsNames(){
+   var promise = Promise.resolve(getTodaysEventsFromApi());
+   var result = await promise;
    var events = new Array();
-   var name = new String();
 
-   for(var i in result){
-       name = result[i].properties.name;
-       //console.log(marker);
-       events.push(marker);
+   for(var i = 0; i < result.length; i++){
+       let eventName = result[i].properties.event_name;
+       events.push(eventName);
    }
-   //console.log(marker);
-   //console.log(events);
    return events;
 }
 
-var todaysEventsCoordinates = getTodaysEventsFromApi().then(getTodaysEventsCoordinates());
-todaysEventsCoordinates.then((todaysEventsCoordinates) =>{
-    export default todaysEventsCoordinates;
-});
 
-var todaysEventsNames = getTodaysEventsFromApi().then(getTodaysEventsNames());
-todaysEventsNames.then((todaysEventsNames) => {
-    export default todaysEventsNames;
-});
 
 
 
