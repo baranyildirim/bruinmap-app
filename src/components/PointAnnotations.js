@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import {getTodaysEventsCoordinates, getTodaysEventsNames} from '../utils/events';
 
@@ -19,8 +19,9 @@ export async function createPointAnnotations(){
                             id={`id${i}`}
                             coordinate={eventsCoordinates[i].coordinates}
                         ><MapboxGL.Callout
-                            title={eventsNames[i]}
-                        /></MapboxGL.PointAnnotation>);
+                            title={`${eventsNames[i]}`}
+                            textStyle={{textAlign: 'left'}}
+                        ></MapboxGL.Callout></MapboxGL.PointAnnotation>);
     }
     console.log("Point Annotations", PointAnnotations);
     return PointAnnotations;

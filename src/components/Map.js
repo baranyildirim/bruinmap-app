@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import {createPointAnnotations} from './PointAnnotations';
 
@@ -7,7 +7,7 @@ import {createPointAnnotations} from './PointAnnotations';
 
 MapboxGL.setAccessToken('pk.eyJ1IjoiYmFyYW55aWxkaXJpbSIsImEiOiJjamR2ZHd5dWwzb3hoMndvNGRod2NwdGI3In0.AG90Y3pom5hxlMhw9fpvyw');
 
-const UCLA = [-118.445320, 34.066915];
+const UCLA = [-118.446320, 34.067915];
 
 export default class Map extends Component {
     constructor(props) {
@@ -33,7 +33,7 @@ export default class Map extends Component {
           <View style={styles.container}>
             <MapboxGL.MapView
               styleURL={MapboxGL.StyleURL.Street}
-              zoomLevel={13.90}
+              zoomLevel={13.60}
               centerCoordinate={UCLA}
               pitch={0}
               style={styles.container}
@@ -46,7 +46,9 @@ export default class Map extends Component {
       }
       else{
         return(
-          <Text>Loading</Text>
+          <View style={{flex: 1, alignItems: 'center', justifyContent:'center'}}>
+            <ActivityIndicator size="large"/>
+          </View>
         );
       }
     }
