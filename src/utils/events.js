@@ -47,6 +47,18 @@ export async function getTodaysEventsNames(){
    return events;
 }
 
+export async function getTodaysEventsDescriptions(){
+    var promise = Promise.resolve(getTodaysEventsFromApi());
+    var result = await promise;
+    var events = new Array();
+ 
+    for(var i = 0; i < result.length; i++){
+        let eventDescription = result[i].properties.description;
+        events.push(eventName);
+    }
+    return events;
+}
+
 
 
 

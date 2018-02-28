@@ -34,6 +34,9 @@ export default class Map extends Component {
             <MapboxGL.MapView
               styleURL={MapboxGL.StyleURL.Street}
               zoomLevel={13.60}
+              scrollEnabled = {false}
+              zoomEnabled = {false}
+              pitchEnabled = {false}
               centerCoordinate={UCLA}
               pitch={0}
               style={styles.container}

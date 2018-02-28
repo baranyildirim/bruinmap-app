@@ -3,7 +3,8 @@ import { View, StyleSheet, Text } from 'react-native';
 import Map from './components/Map';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
-import AppHeader from './components/AppHeader'
+import AppHeader from './components/AppHeader';
+import EventList from './components/EventList';
 
 
 class MapScreen extends Component {
@@ -20,8 +21,9 @@ class MapScreen extends Component {
 class ListScreen extends Component {
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <AppHeader/>
+        <EventList/>
       </View>
     );
   }
