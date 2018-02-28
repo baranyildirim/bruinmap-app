@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
-import {createPointAnnotations} from './PointAnnotations';
+import {createPointAnnotations} from '../utils/createPointAnnotations';
 
 
 
