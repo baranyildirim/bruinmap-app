@@ -13,8 +13,8 @@ export default class EventListItem extends Component {
     }
 
     componentWillMount(){
-        if(this.state.name.length > 30)
-            this.setState({name: `${this.state.name.substr(0, 30)}...`});
+        if(this.state.name.length > 25)
+            this.setState({name: `${this.state.name.substr(0, 25)}...`});
         if(this.state.description.length > 200)
             this.setState({description: `${this.state.description.substr(0, 200)}...`});
     }
@@ -34,9 +34,10 @@ export default class EventListItem extends Component {
 
 const styles = StyleSheet.create({
     listView:{ //Most outer layer
-        backgroundColor: '#fff',
         flexDirection: 'column',
-        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomWidth: 0.3,
+        borderRightWidth: 0.3,
+        borderLeftWidth: 0.3,
         borderColor: '#d6d7da',
         alignItems: 'stretch',
         height: 85,
@@ -44,13 +45,15 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         paddingTop: 10,
         paddingBottom: 10,
-        backgroundColor: 'rgba(0, 0, 0, 0)'
+        backgroundColor: 'white',
+        //elevation: 1,
+        marginBottom: 10,
+        elevation: 3
     },  
     titleView:{ // View containing event name and time
         flexDirection: 'row',
         fontFamily: 'Roboto',
         flex: 1,
-        alignItems:'flex-end'
     },
     nameView:{ // View containing event name left justified
         flex: 3,
@@ -62,7 +65,8 @@ const styles = StyleSheet.create({
     },
     nameText:{ // Style for event name
         fontSize: 15,
-        color: 'black'
+        color: 'black',
+        fontWeight: 'bold'
     },
     timeText:{
         fontSize: 10

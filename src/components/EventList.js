@@ -23,7 +23,7 @@ export default class EventList extends Component {
     render(){
         if(this.state.loaded === 'true'){
             return(
-                <ScrollView style = {{flex: 1}}>
+                <ScrollView style = {{flex: 1, padding:10, backgroundColor:'rgba(52,52,52, 0.08)'}}>
                     {this.state.EventListItems}
                 </ScrollView    >
             );

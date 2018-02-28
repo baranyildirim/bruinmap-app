@@ -34,6 +34,10 @@ export async function createEventListItems(){
         let eventDescription = eventsDescriptions[i];
         eventDescription = eventDescription.replace(/ +(?= )/g,'');
         eventDescription = eventDescription.replace(/\r?\n|\r/g, ' ');
+
+        if(eventDescription == "<NONE>")
+            eventDescription = "";
+
         
 
         EventListItems.push(<EventListItem
