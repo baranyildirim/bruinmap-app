@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet, TouchableOpacity, LinearGradient } from 'react-native';
 
 export default class EventListItem extends Component {
     constructor(props){
@@ -20,6 +20,7 @@ export default class EventListItem extends Component {
     }
     render(){
         return(
+
             <TouchableOpacity style={styles.listView}>
                 <View style={styles.titleView}>
                     <View style={styles.nameView}><Text style={styles.nameText}>{`${this.state.name}`}</Text></View>
@@ -28,6 +29,8 @@ export default class EventListItem extends Component {
                 <View style={{flex: 1}}><Text style={styles.locationText}>{this.state.location}</Text></View>
                 <Text style={styles.descriptionText}>{this.state.description}</Text>
             </TouchableOpacity>
+
+
         );
     }
 }
@@ -35,24 +38,22 @@ export default class EventListItem extends Component {
 const styles = StyleSheet.create({
     listView:{ //Most outer layer
         flexDirection: 'column',
-        borderBottomWidth: 0.3,
-        borderRightWidth: 0.3,
-        borderLeftWidth: 0.3,
-        borderColor: '#d6d7da',
+        //borderBottomWidth: 0.3,
+        //borderRightWidth: 0.3,
+        //borderLeftWidth: 0.3,
+        borderRadius: 2,
+        //borderColor: '#d6d7da',
         alignItems: 'stretch',
-        height: 85,
         paddingLeft: 20,
         paddingRight: 20,
-        paddingTop: 10,
-        paddingBottom: 10,
         backgroundColor: 'white',
-        //elevation: 1,
-        marginBottom: 10,
-        elevation: 3
+        marginBottom: 15,
+        paddingBottom: 10,
     },  
     titleView:{ // View containing event name and time
         flexDirection: 'row',
-        fontFamily: 'Roboto',
+        marginTop: 10,
+        alignItems:'flex-end',
         flex: 1,
     },
     nameView:{ // View containing event name left justified
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
     nameText:{ // Style for event name
         fontSize: 15,
         color: 'black',
-        fontWeight: 'bold'
+        fontFamily: 'Roboto',
+
     },
     timeText:{
         fontSize: 10
@@ -76,5 +78,10 @@ const styles = StyleSheet.create({
     },
     descriptionText:{
         fontSize: 8
+    },
+    shadow: {
+        left: 0,
+        right: 0,
+        height: 4,
     }
 });
