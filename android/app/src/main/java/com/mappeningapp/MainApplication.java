@@ -7,7 +7,6 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.mapbox.rctmgl.RCTMGLPackage;
 
 
-
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;

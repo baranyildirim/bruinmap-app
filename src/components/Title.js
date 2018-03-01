@@ -5,11 +5,14 @@ export default class Title extends Component {
   render(){
     return(
       <View style={{flexDirection: 'row', justifyContent:'center'}}>
-        <Text style = {styles.titleTextStyle}></Text>
+        <View style={{marginRight: 10}}><Text style = {styles.titleTextStyle}>bruin</Text></View>
+        
         <Image 
         style={{width: 30, height: 40}}
         source={require('../assets/map-icon.png')} />
-        <Text style = {styles.titleTextStyle} ></Text>
+
+        <View style={{marginLeft: 10}}><Text style = {styles.titleTextStyle} >map</Text></View>
+        
       </View>
     );
   }
@@ -18,7 +21,7 @@ export default class Title extends Component {
 styles = StyleSheet.create({
   titleTextStyle : {
     fontSize: 27,
-    color: '#ffb300',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    fontFamily: 'Telegrafico'
   }
 });

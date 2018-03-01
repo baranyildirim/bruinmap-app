@@ -5,13 +5,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import AppHeader from './components/AppHeader';
 import EventList from './components/EventList';
+import Drawer from 'react-native-drawer'
+import ControlPanel from './components/ControlPanel';
+
 
 
 class MapScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <AppHeader/>
         <Map/>
       </View>
     );
@@ -22,14 +24,13 @@ class ListScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <AppHeader/>
         <EventList/>
       </View>
     );
   }
 }
 
-export default TabNavigator(
+const TabNav = TabNavigator(
   {
     Map: { screen: MapScreen },
     List: { screen: ListScreen },
@@ -62,3 +63,25 @@ export default TabNavigator(
   }
 );
 
+export default class App extends Component {
+  closeDrawer = () => {
+    this._drawer.close()
+  };
+  openDrawer = () => {
+    this._drawer.open()
+  };
+
+  render(){
+    return(
+      <View style={{flex: 1}}>
+      <AppHeader/>
+      <TabNav/>
+      </View>
+    );
+  }
+}
+
+const drawerStyles = {
+  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+  main: {paddingLeft: 3},
+}

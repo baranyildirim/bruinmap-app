@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
         //borderRightWidth: 0.3,
         //borderLeftWidth: 0.3,
         borderRadius: 2,
+        elevation: 3,
         //borderColor: '#d6d7da',
         alignItems: 'stretch',
         paddingLeft: 20,
         paddingRight: 20,
         backgroundColor: 'white',
-        marginBottom: 15,
+        marginBottom: 10,
         paddingBottom: 10,
     },  
     titleView:{ // View containing event name and time
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: 'black',
         fontFamily: 'Roboto',
-
+       //fontWeight: 'bold'
     },
     timeText:{
         fontSize: 10
@@ -79,9 +80,4 @@ const styles = StyleSheet.create({
     descriptionText:{
         fontSize: 8
     },
-    shadow: {
-        left: 0,
-        right: 0,
-        height: 4,
-    }
 });
