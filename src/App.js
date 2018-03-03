@@ -7,19 +7,37 @@ import TabNav from './components/TabNav';
 
 
 export default class App extends Component {
-  closeDrawer = () => {
-    this._drawer.close()
+  closeControlPanel = () => {
+    this.refs.ControlPanel.close()
   };
-  openDrawer = () => {
-    this._drawer.open()
+
+  openControlPanel = () => {
+    this.refs.ControlPanel.open()
   };
 
   render(){
     return(
-      <View style={{flex: 1}}>
-      <AppHeader/>
+      <Drawer 
+      ref={(ref) => this.ControlPanel = ref}
+      type="overlay"
+      content={<ControlPanel 
+      closeDrawer ={() => {this.ControlPanel.close();}}
+      />}
+      tapToClose={true}
+      open={true}
+      openDrawerOffset={0.2} // 20% gap on the right side of drawer
+      panCloseMask={0.2}
+      closedDrawerOffset={-3}
+      styles={drawerStyles}
+      tweenHandler={(ratio) => ({
+        main: { opacity:(2-ratio)/2 }
+      })}
+      >
+      <AppHeader
+      openDrawer={() => {this.ControlPanel.open();}}
+      />
       <TabNav/>
-      </View>
+      </Drawer>
     );
   }
 }
