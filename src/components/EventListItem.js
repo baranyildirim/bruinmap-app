@@ -25,8 +25,8 @@ export default class EventListItem extends Component {
     }
 
     componentWillMount(){
-        if(this.state.name.length > 25)
-            this.setState({name: `${this.state.name.substr(0, 25)}...`});
+        if(this.state.name.length > 20)
+            this.setState({name: `${this.state.name.substr(0, 20)}...`});
         if(this.state.description.length > 200)
             this.setState({description: `${this.state.description.substr(0, 200)}...`});
         switch (this.state.category){
@@ -107,9 +107,9 @@ const styles = StyleSheet.create({
     },
     nameText:{ // Style for event name
         fontSize: 15,
-        color: 'black',
-        fontFamily: 'Roboto',
-       //fontWeight: 'bold'
+        fontWeight: 'normal',
+        fontFamily: 'sans-serif-light',
+        color: 'black'
     },
     timeText:{
         fontSize: 10
