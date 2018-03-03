@@ -28,6 +28,7 @@ Dependencies:
 * "react": "16.2.0",
 * "react-map-gl": "^3.2.4",
 * "react-native": "0.53.2",
+* "react-native-drawer": "^2.5.0",
 * "react-native-elements": "^0.19.0",
 * "react-native-vector-icons": "^4.5.0",
 * "react-navigation": "^1.1.1",
