@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     },
     iconContainer:{
         flex: 1,
-        marginLeft: 5
     },
     icon:{
         width: 30,
@@ -90,8 +89,7 @@ const styles = StyleSheet.create({
     },
     textContainer:{
         flexDirection: 'column',
-        flex: 3,
-        marginLeft: -35
+        flex: 4,
     },
     titleView:{ // View containing event name and time
         flexDirection: 'row',
