@@ -107,6 +107,18 @@ export async function getTodaysEventsLocations(){
     return events;
 }
 
+export async function getTodaysEventsCategories(){
+    var promise = Promise.resolve(getTodaysEventsFromApi());
+    var result = await promise;
+    var events = new Array();
+ 
+    for(var i = 0; i < result.length; i++){
+        let eventCategory = result[i].properties.category;
+        events.push(eventCategory);
+    }
+    return events;
+}
+
 
 
 
