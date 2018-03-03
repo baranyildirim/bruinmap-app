@@ -1,13 +1,16 @@
 # BruinMap Mobile Application
-Mobile application built with React-Native.
-
-Fetches events at UCLA using UCLA DevX API.
-Events viewable on map view and on a list view.
+Mobile application built with React-Native, aimed to help UCLA students keep track of and attend events on campus.
+Fetches events at UCLA using [UCLA DevX API](http://api.ucladevx.com)
+ 
 
 To be implemented:
-* API integration and map marker generation.
-* List screen with event names and details
-* Navigation to events
+* [X] API integration and map marker generation.
+* [X] Basic list screen with event names and brief details
+* [ ] Comphrehensive event details when user taps at an event on the list
+* [ ] Navigation to events
+* [ ] Filtering events displayed by category on map and list with drawer button
+* [ ] Comprehensive directory of places on and near campus
+* [ ] Sharing functionality 
 
 Dependencies:
 * "@mapbox/geo-viewport": "^0.2.2",
