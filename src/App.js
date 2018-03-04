@@ -24,11 +24,11 @@ export default class App extends Component {
       closeDrawer ={() => {this.ControlPanel.close();}}
       />}
       tapToClose={true}
-      open={true}
+      negotiatePan={true}
       openDrawerOffset={0.2} // 20% gap on the right side of drawer
       panCloseMask={0.2}
       closedDrawerOffset={-3}
-      styles={drawerStyles}
+      elevation={300}
       tweenHandler={(ratio) => ({
         main: { opacity:(2-ratio)/2 }
       })}
@@ -40,9 +40,4 @@ export default class App extends Component {
       </Drawer>
     );
   }
-}
-
-const drawerStyles = {
-  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-  main: {paddingLeft: 3},
 }

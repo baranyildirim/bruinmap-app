@@ -9,7 +9,11 @@ export default class DrawerButton extends Component {
             style={{flex:1}}
             onPress={() => {this.props.openDrawer();}}
             >
-            <Icon name="ios-navicon"/>
+            <Icon 
+            name="ios-menu"
+            size={30}
+            color="black"
+            />
             </TouchableOpacity>
         );
     }
