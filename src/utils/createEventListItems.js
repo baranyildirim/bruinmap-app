@@ -36,13 +36,17 @@ export async function createEventListItems(){
         
         let eventLocation = (eventsLocations[i].name != undefined) ? 
             eventsLocations[i].name : eventLocation[i].location.street;
-
+        
         let eventDescription = eventsDescriptions[i];
-        eventDescription = eventDescription.replace(/ +(?= )/g,'');
-        eventDescription = eventDescription.replace(/\r?\n|\r/g, ' ');
+        
+        let compactEventDescription = eventsDescriptions[i];
+        compactEventDescription = compactEventDescription.replace(/ +(?= )/g,'');
+        compactEventDescription = compactEventDescription.replace(/\r?\n|\r/g, ' ');
 
-        if(eventDescription == "<NONE>")
-            eventDescription = "";
+        if(compactEventDescription == "<NONE>")
+            compactEventDescription = "";
+
+        
 
         let eventCategory = eventsCategories[i];
 
@@ -52,6 +56,7 @@ export async function createEventListItems(){
         EventListItems.push(<EventListItem
             name={eventsNames[i]}
             description={eventDescription}
+            compactdescription={compactEventDescription}
             location={eventLocation}
             time={eventTimeInterval}
             category={eventCategory}

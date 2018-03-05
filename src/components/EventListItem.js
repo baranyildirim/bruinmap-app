@@ -15,7 +15,7 @@ export default class EventListItem extends Component {
             name: props.name,
             compactname: props.name,
             description: props.description,
-            compactdescription: props.description,
+            compactdescription: props.compactdescription,
             location: props.location,
             timeInterval: props.time,
             category: props.category,
@@ -28,10 +28,10 @@ export default class EventListItem extends Component {
     }
     componentWillMount(){
         if(this.state.compact){
-            if(this.state.name.length > 20)
-                this.setState({compactname: `${this.state.name.substr(0, 20)}...`});
-            if(this.state.description.length > 200)
-                this.setState({compactdescription: `${this.state.description.substr(0, 200)}...`});
+            if(this.state.compactname.length > 20)
+                this.setState({compactname: `${this.state.compactname.substr(0, 20)}...`});
+            if(this.state.compactdescription.length > 200)
+                this.setState({compactdescription: `${this.state.compactdescription.substr(0, 200)}...`});
             switch (this.state.category){
                 case "THEATER": this.setState({icon: require('../assets/icons/THEATER.png') }); break;
                 case "COMEDY_PERFORMANCE": this.setState({icon: require('../assets/icons/COMEDY_PERFORMANCE.png') }); break;
