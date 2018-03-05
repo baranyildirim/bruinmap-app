@@ -7,7 +7,7 @@ To be implemented:
 * [X] API integration and map marker generation
 * [X] Basic list screen with event names and brief details
 * [X] Event icons based on event category
-* [ ] Comphrehensive event details when user taps at an event on the list
+* [X] Comphrehensive event details when user taps at an event on the list
 * [ ] Navigation to events
 * [ ] Filtering events displayed by category on map and list with drawer button
 * [ ] Comprehensive directory of places on and near campus
