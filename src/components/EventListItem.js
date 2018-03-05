@@ -77,7 +77,9 @@ export default class EventListItem extends Component {
                         <Text style={expandedStyles.timeText}>{this.state.timeInterval}</Text>
                         <Text style={expandedStyles.locationText}>{this.state.location}</Text>
                         <View style={expandedStyles.pictureView}>
-                        <Image style={expandedStyles.picture} source={{uri: `${this.state.picture}`}}/>
+                        <Image style={expandedStyles.picture} 
+                        resizeMode="stretch"
+                        source={{uri: `${this.state.picture}`}}/>
                         </View>
                         <Text style={expandedStyles.descriptionText}>{this.state.description}</Text>
                     </View>
@@ -173,14 +175,15 @@ const expandedStyles = StyleSheet.create({
     },
     picture:{
         flex: 1,
-        height: 300,
-        width: 350,
+        height: 150,
+        width: undefined,
         marginTop: 10,
         marginBottom: 10,
         borderRadius: 5,
     },
     pictureView:{
         flex: 1,
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
       
