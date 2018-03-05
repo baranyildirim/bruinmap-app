@@ -8,6 +8,7 @@ import {createPointAnnotations} from '../utils/createPointAnnotations';
 MapboxGL.setAccessToken('pk.eyJ1IjoiYmFyYW55aWxkaXJpbSIsImEiOiJjamR2ZHd5dWwzb3hoMndvNGRod2NwdGI3In0.AG90Y3pom5hxlMhw9fpvyw');
 
 const UCLA = [-118.446320, 34.067915];
+const bounds = [[-118.46, 34.056],[-118.428, 34.079]];
 
 export default class Map extends Component {
     constructor(props) {
@@ -19,11 +20,11 @@ export default class Map extends Component {
     }
 
     componentWillMount() {
-      createPointAnnotations().then((result)=>{
+      createPointAnnotations(this._map).then((result)=>{
         console.log(result);
         this.setState({Markers: result});
         this.setState({loaded: 'true'});
-      })
+      });
     }
 
     
@@ -32,11 +33,9 @@ export default class Map extends Component {
         return (
           <View style={styles.container}>
             <MapboxGL.MapView
+              ref={(ref) => this._map = ref}
               styleURL={MapboxGL.StyleURL.Street}
               zoomLevel={13.60}
-              scrollEnabled = {false}
-              zoomEnabled = {false}
-              pitchEnabled = {false}
               centerCoordinate={UCLA}
               pitch={0}
               style={styles.container}
@@ -56,7 +55,7 @@ export default class Map extends Component {
       }
     }
   }
-  
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,

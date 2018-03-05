@@ -18,6 +18,14 @@ export async function createPointAnnotations(){
                             key={`${i}`}
                             id={`id${i}`}
                             coordinate={eventsCoordinates[i].coordinates}
+                            onSelected={()=>{
+                                // Zoom to point annotation
+                                
+                            }}
+                            onDeselected={()=>{
+                                // Zoom out of point annotation
+                                
+                            }}
                         ><MapboxGL.Callout
                             title={`${eventsNames[i]}`}
                             textStyle={{textAlign: 'left'}}

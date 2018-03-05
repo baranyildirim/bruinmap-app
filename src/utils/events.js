@@ -120,6 +120,21 @@ export async function getTodaysEventsCategories(){
 }
 
 
+export async function getTodaysEventsPictures(){
+    var promise = Promise.resolve(getTodaysEventsFromApi());
+    var result = await promise;
+    var events = new Array();
+ 
+    for(var i = 0; i < result.length; i++){
+        let eventPicture = result[i].properties.cover_picture;
+        events.push(eventPicture);
+    }
+    return events;
+}
+
+
+
+
 
 
 

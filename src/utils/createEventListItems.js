@@ -5,6 +5,7 @@ import {getTodaysEventsDescriptions,
         getTodaysEventsTimes,
         getTodaysEventsLocations,
         getTodaysEventsCategories,
+        getTodaysEventsPictures
         } from '../utils/events';
 import EventListItem from '../components/EventListItem';
 
@@ -14,12 +15,14 @@ export async function createEventListItems(){
     let promiseLocations = Promise.resolve(getTodaysEventsLocations());
     let promiseTimes =  Promise.resolve(getTodaysEventsTimes());
     let promiseCategories = Promise.resolve(getTodaysEventsCategories());
+    let promisePictures = Promise.resolve(getTodaysEventsPictures());
 
     let eventsNames = await promiseNames;
     let eventsDescriptions = await promiseDescriptions;
     let eventsLocations = await promiseLocations;
     let eventsTimes = await promiseTimes;
     let eventsCategories = await promiseCategories;
+    let eventsPictures = await promisePictures;
 
     let EventListItems = [];
 
@@ -52,6 +55,7 @@ export async function createEventListItems(){
             location={eventLocation}
             time={eventTimeInterval}
             category={eventCategory}
+            picture={eventsPictures[i]}
             >
             </EventListItem>);
     }
