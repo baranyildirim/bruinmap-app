@@ -35,5 +35,6 @@ Dependencies:
 * "react-navigation": "^1.1.1",
 * "url": "^0.11.0"
 
+env.json containing access key for MapBox should be in root directory (removed for security).
 Check root package files for more information.
 
