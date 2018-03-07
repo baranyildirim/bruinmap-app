@@ -26,12 +26,8 @@ export async function getTodaysEventsCoordinates(){
     var events = new Array();
 
     for(var i = 0; i < result.length; i++){
-        let marker = new Object();
-        marker.coordinates = result[i].geometry.coordinates;
-        events.push(marker);
+        events.push(result[i].geometry.coordinates);
     }
-    //console.log(marker);
-    //console.log(events);
     return events;
 }
 

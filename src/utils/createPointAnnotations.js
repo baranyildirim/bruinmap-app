@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import {getTodaysEventsCoordinates, getTodaysEventsNames} from '../utils/events';
 
-export async function createPointAnnotations(){
+export async function createPointAnnotations(handleZoom, resetPosition, handleMovement){
     let promiseCoordinates = Promise.resolve(getTodaysEventsCoordinates());
     let eventsCoordinates = await promiseCoordinates;
 
@@ -14,17 +14,18 @@ export async function createPointAnnotations(){
     console.log("events names", eventsNames);
     var PointAnnotations = [];
     for(var i = 0; i < eventsCoordinates.length; i++){
+        let lng = eventsCoordinates[i][0];
+        let lat = eventsCoordinates[i][1];
         PointAnnotations.push(<MapboxGL.PointAnnotation 
                             key={`${i}`}
                             id={`id${i}`}
-                            coordinate={eventsCoordinates[i].coordinates}
-                            onSelected={()=>{
-                                // Zoom to point annotation
+                            coordinate={eventsCoordinates[i]}
+                            onSelected={() => {
+                                handleMovement(lng,lat)
                                 
                             }}
                             onDeselected={()=>{
-                                // Zoom out of point annotation
-                                
+                                resetPosition();
                             }}
                         ><MapboxGL.Callout
                             title={`${eventsNames[i]}`}

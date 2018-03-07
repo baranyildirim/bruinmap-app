@@ -19,8 +19,29 @@ export default class Map extends Component {
       };
     }
 
+    handleZoom(zoomLevel){
+      this._map.zoomTo(zoomLevel);
+    }
+
+    handleMovement(lng, lat){
+      this._map.setCamera({
+        centerCoordinate: [lng, lat],
+        zoom: 18,
+      })
+
+      
+    }
+
+    resetPosition(){
+      this._map.setCamera({
+        centerCoordinate: UCLA,
+        zoom: 13.60,  
+
+      })
+    }
+
     componentWillMount() {
-      createPointAnnotations(this._map).then((result)=>{
+      createPointAnnotations(this.handleZoom.bind(this), this.resetPosition.bind(this), this.handleMovement.bind(this)).then((result)=>{
         console.log(result);
         this.setState({Markers: result});
         this.setState({loaded: 'true'});
