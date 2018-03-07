@@ -9,10 +9,11 @@ Current features and ones to be implemented:
 * [X] Event icons based on event category
 * [X] Comphrehensive event details when user taps at an event on the list
 * [X] Zoom-in when user selects event on map, Zoom-out when user deselects event on map
-* [ ] Navigation to events
+* [ ] Allow the user to pick dates
 * [ ] Filtering events displayed by category on map and list with drawer button
 * [ ] Comprehensive directory of places on and near campus
 * [ ] Sharing functionality 
+* [ ] Navigation to events
 
 Dependencies:
 * "@mapbox/geo-viewport": "^0.2.2",
