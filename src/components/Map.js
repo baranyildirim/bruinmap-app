@@ -36,6 +36,8 @@ export default class Map extends Component {
       this._map.setCamera({
         centerCoordinate: UCLA,
         zoom: 13.60,  
+        pitch: 0,
+        heading: 0,
 
       })
     }
@@ -59,6 +61,7 @@ export default class Map extends Component {
               zoomLevel={13.60}
               centerCoordinate={UCLA}
               pitch={0}
+              bearing={0}
               style={styles.container}
               animated={true}
               >
