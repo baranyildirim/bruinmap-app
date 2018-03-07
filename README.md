@@ -8,6 +8,7 @@ To be implemented:
 * [X] Basic list screen with event names and brief details
 * [X] Event icons based on event category
 * [X] Comphrehensive event details when user taps at an event on the list
+* [X] Zoom-in when user selects event on map, Zoom-out when user deselects event on map
 * [ ] Navigation to events
 * [ ] Filtering events displayed by category on map and list with drawer button
 * [ ] Comprehensive directory of places on and near campus
@@ -36,5 +37,6 @@ Dependencies:
 * "url": "^0.11.0"
 
 env.json containing access key for MapBox should be in root directory (removed for security).
+
 Check root package files for more information.
 
