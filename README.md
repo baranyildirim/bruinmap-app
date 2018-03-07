@@ -3,7 +3,7 @@ Mobile application built with React-Native, aimed to help UCLA students keep tra
 Fetches events at UCLA using [UCLA DevX API](http://api.ucladevx.com)
  
 
-Features and To be implemented:
+Current features and ones to be implemented:
 * [X] API integration and map marker generation
 * [X] Basic list screen with event names and brief details
 * [X] Event icons based on event category
