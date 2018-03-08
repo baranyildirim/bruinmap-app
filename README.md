@@ -40,12 +40,12 @@ Dependencies:
 env.json containing access key for MapBox should be in root directory (removed for security).
 
 Docs for extra libraries:
-*https://github.com/mmazzarolo/react-native-modal-datetime-picker
-*https://github.com/mapbox/react-native-mapbox-gl
-*https://github.com/root-two/react-native-drawer
-*https://github.com/react-native-training/react-native-elements
-*https://github.com/oblador/react-native-vector-icons
-*https://github.com/react-navigation/react-navigation
+* https://github.com/mmazzarolo/react-native-modal-datetime-picker
+* https://github.com/mapbox/react-native-mapbox-gl
+* https://github.com/root-two/react-native-drawer
+* https://github.com/react-native-training/react-native-elements
+* https://github.com/oblador/react-native-vector-icons
+* https://github.com/react-navigation/react-navigation
 
 Check root package files for more information.
 
