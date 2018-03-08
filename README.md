@@ -46,7 +46,5 @@ https://github.com/react-native-training/react-native-elements
 https://github.com/oblador/react-native-vector-icons
 https://github.com/react-navigation/react-navigation
 
-
-
 Check root package files for more information.
 
