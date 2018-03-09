@@ -3,11 +3,12 @@ import { View, StyleSheet, Text } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import {getTodaysEventsCoordinates, getTodaysEventsNames} from '../utils/events';
 
-export async function createPointAnnotations(handleZoom, resetPosition, handleMovement){
-    let promiseCoordinates = Promise.resolve(getTodaysEventsCoordinates());
+export async function createPointAnnotations(date, handleZoom, resetPosition, handleMovement){
+    
+    let promiseCoordinates = Promise.resolve(getTodaysEventsCoordinates(date));
     let eventsCoordinates = await promiseCoordinates;
 
-    let promiseNames = Promise.resolve(getTodaysEventsNames());
+    let promiseNames = Promise.resolve(getTodaysEventsNames(date));
     let eventsNames = await promiseNames;
     
     console.log("events coordinates", eventsCoordinates);

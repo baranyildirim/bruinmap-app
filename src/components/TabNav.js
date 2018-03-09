@@ -6,24 +6,43 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 import EventList from './EventList';
 
 class MapScreen extends Component {
+
+  componentWillReceiveProps(nextProp){
+    console.log("Date received by MapScreen", nextProp.screenProps.date);
+    this.Map.changeDate(nextProp.screenProps.date);
+  }
+
     render() {
       return (
         <View style={{flex: 1}}>
-          <Map/>
+          <Map
+          ref={(ref) => this.Map = ref}
+          />
         </View>
       );
     }
-  }
+}
   
-  class ListScreen extends Component {
-    render() {
-      return (
-        <View style={{flex: 1}}>
-          <EventList/>
-        </View>
-      );
-    }
+class ListScreen extends Component {
+  state={
+    date: new Date()
   }
+
+  componentWillReceiveProps(nextProp){
+    console.log("Date received by MapScreen", nextProp.screenProps);
+    this.setState({date: nextProp});
+  }
+    
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <EventList
+        ref={(ref) => this.List = ref}
+        />
+      </View>
+    );
+  }
+}
   
 export default TabNav = TabNavigator(
     {
@@ -54,6 +73,8 @@ export default TabNav = TabNavigator(
       tabBarComponent: TabBarBottom,
       tabBarPosition: 'bottom',
       animationEnabled: false,
-      swipeEnabled: false,
+      swipeEnabled: true,
     }
   );
+
+  

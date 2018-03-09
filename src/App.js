@@ -7,13 +7,14 @@ import TabNav from './components/TabNav';
 
 
 export default class App extends Component {
-  closeControlPanel = () => {
-    this.refs.ControlPanel.close()
-  };
+  state = {
+    date: new Date(),
+  }
 
-  openControlPanel = () => {
-    this.refs.ControlPanel.open()
-  };
+  changeDate(newDate){
+    console.log("Date received by App");
+    this.setState({date: newDate});
+  }
 
   render(){
     return(
@@ -35,8 +36,12 @@ export default class App extends Component {
       >
       <AppHeader
       openDrawer={() => {this.ControlPanel.open();}}
+      changeDate={this.changeDate.bind(this)}
       />
-      <TabNav/>
+      <TabNav
+      ref={(ref) => this.TabNav = ref}
+      screenProps={{date: this.state.date}}
+      />
       </Drawer>
     );
   }

@@ -15,12 +15,22 @@ export default class Map extends Component {
       super(props);
       this.state = {
         loaded: 'false',
-        Markers: []
+        Markers: [],
+        date: new Date(),
       };
     }
 
     handleZoom(zoomLevel){
       this._map.zoomTo(zoomLevel);
+    }
+
+    changeDate(newDate){
+      console.log("Date received by Map", newDate);
+      this.setState({date: newDate, loaded: 'false'});
+      createPointAnnotations(this.state.date, this.handleZoom.bind(this), this.resetPosition.bind(this), this.handleMovement.bind(this)).then((result)=>{
+        this.setState({Markers: result});
+        this.setState({loaded: 'true'});
+      });
     }
 
     handleMovement(lng, lat){
@@ -43,7 +53,7 @@ export default class Map extends Component {
     }
 
     componentWillMount() {
-      createPointAnnotations(this.handleZoom.bind(this), this.resetPosition.bind(this), this.handleMovement.bind(this)).then((result)=>{
+      createPointAnnotations(this.state.date, this.handleZoom.bind(this), this.resetPosition.bind(this), this.handleMovement.bind(this)).then((result)=>{
         console.log(result);
         this.setState({Markers: result});
         this.setState({loaded: 'true'});

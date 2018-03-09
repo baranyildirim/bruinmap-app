@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { Header } from 'react-native-elements'
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Header } from 'react-native-elements';
 import Title from './Title';
-import DrawerButton from './DrawerButton'
+import DrawerButton from './DrawerButton';
+import DatePicker from './DatePicker';
 
 
 export default class AppHeader extends Component {
+    changeDate(newDate){
+        console.log("Date received by AppHeader");
+        this.props.changeDate(newDate);
+    }
+
     render(){
         return(
             <Header
@@ -14,7 +20,11 @@ export default class AppHeader extends Component {
             innerContainerStyles={{alignItems:'center', paddingLeft: 5, paddingRight: 5, justifyContent:'space-between'}}
             leftComponent={<DrawerButton openDrawer={() => {this.props.openDrawer();}}/> }
             centerComponent={<Title/>}
-            rightComponent={{icon:'settings', color: 'black'}}
+            rightComponent={
+            <DatePicker
+            changeDate={this.changeDate.bind(this)}            
+            />
+            }
             />
         );
     }
