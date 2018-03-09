@@ -69,10 +69,11 @@ export default class EventListItem extends Component {
         }
         else{
             return(
-                <TouchableOpacity style={expandedStyles.expandedListView} onPress={() => {
-                    this.setState({compact: true});
-                }}>
+                <View style={expandedStyles.expandedListView}>
                     <View style={expandedStyles.innerContainer}>
+                        <TouchableOpacity onPress={() => {
+                        this.setState({compact: true});
+                        }}>
                         <Text style={expandedStyles.nameText}>{this.state.name}</Text>
                         <Text style={expandedStyles.timeText}>{this.state.timeInterval}</Text>
                         <Text style={expandedStyles.locationText}>{this.state.location}</Text>
@@ -81,9 +82,10 @@ export default class EventListItem extends Component {
                         resizeMode="stretch"
                         source={{uri: `${this.state.picture}`}}/>
                         </View>
-                        <Text style={expandedStyles.descriptionText}>{this.state.description}</Text>
+                        </TouchableOpacity>
+                        <Text selectable={true} style={expandedStyles.descriptionText}>{this.state.description}</Text>
                     </View>
-                </TouchableOpacity>
+                </View>
             );
         }
     }
@@ -189,7 +191,7 @@ const expandedStyles = StyleSheet.create({
       
     },
     descriptionText:{
-        color: 'black'
+        color: 'black',
     }
 
 });

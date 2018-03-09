@@ -72,7 +72,7 @@ export default TabNav = TabNavigator(
       },
       tabBarComponent: TabBarBottom,
       tabBarPosition: 'bottom',
-      animationEnabled: false,
+      animationEnabled: true,
       swipeEnabled: true,
       lazy: false
     }
