@@ -13,7 +13,8 @@ export async function createPointAnnotations(date, handleZoom, resetPosition, ha
     
     console.log("events coordinates", eventsCoordinates);
     console.log("events names", eventsNames);
-    var PointAnnotations = [];
+
+    let PointAnnotations = [];
     for(var i = 0; i < eventsCoordinates.length; i++){
         let lng = eventsCoordinates[i][0];
         let lat = eventsCoordinates[i][1];
@@ -23,7 +24,6 @@ export async function createPointAnnotations(date, handleZoom, resetPosition, ha
                             coordinate={eventsCoordinates[i]}
                             onSelected={() => {
                                 handleMovement(lng,lat)
-                                
                             }}
                             onDeselected={()=>{
                                 resetPosition();

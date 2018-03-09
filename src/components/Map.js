@@ -16,7 +16,7 @@ export default class Map extends Component {
       this.state = {
         loaded: 'false',
         Markers: [],
-        date: new Date(),
+        date: new Date
       };
     }
 
@@ -27,7 +27,7 @@ export default class Map extends Component {
     changeDate(newDate){
       console.log("Date received by Map", newDate);
       this.setState({date: newDate, loaded: 'false'});
-      createPointAnnotations(this.state.date, this.handleZoom.bind(this), this.resetPosition.bind(this), this.handleMovement.bind(this)).then((result)=>{
+      createPointAnnotations(newDate, this.handleZoom.bind(this), this.resetPosition.bind(this), this.handleMovement.bind(this)).then((result)=>{
         this.setState({Markers: result});
         this.setState({loaded: 'true'});
       });
@@ -38,8 +38,6 @@ export default class Map extends Component {
         centerCoordinate: [lng, lat],
         zoom: 18,
       })
-
-      
     }
 
     resetPosition(){

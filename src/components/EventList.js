@@ -10,7 +10,7 @@ export default class EventList extends Component {
         this.state = {
           loaded: 'false',
           EventListItems : [],
-          date: new Date(),
+          date: new Date
         };
       }
 

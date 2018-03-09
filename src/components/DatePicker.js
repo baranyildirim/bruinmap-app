@@ -17,6 +17,7 @@ export default class DatePicker extends Component {
     
       _handleDatePicked = (pickedDate) => {
         console.log("Date changed by datepicker");
+        pickedDate.setHours(0,0,0,0);
         this.props.changeDate(pickedDate);
         this.setState({lastPickedDate: pickedDate});
         this._hideDateTimePicker();

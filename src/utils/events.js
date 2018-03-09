@@ -3,7 +3,8 @@ import React from 'react';
 
 
 function getTodaysEventsFromApi(date){
-    var dateInput = new Date();
+    
+    let dateInput = new Date();
 
     if(date != undefined)
         dateInput = date;
