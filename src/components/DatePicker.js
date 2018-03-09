@@ -17,8 +17,6 @@ export default class DatePicker extends Component {
     
       _handleDatePicked = (pickedDate) => {
         console.log("Date changed by datepicker");
-        var dateOffset = (24*60*60*1000);
-        pickedDate.setTime(pickedDate.getTime() - dateOffset);
         this.props.changeDate(pickedDate);
         this.setState({lastPickedDate: pickedDate});
         this._hideDateTimePicker();
