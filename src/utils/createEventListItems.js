@@ -4,6 +4,8 @@ import {getTodaysEventsDescriptions,
         getTodaysEventsNames,
         getTodaysEventsTimes,
         getTodaysEventsLocations,
+        getTodaysEventsCategories,
+        getTodaysEventsPictures
         } from '../utils/events';
 import EventListItem from '../components/EventListItem';
 
@@ -12,11 +14,15 @@ export async function createEventListItems(){
     let promiseDescriptions = Promise.resolve(getTodaysEventsDescriptions());
     let promiseLocations = Promise.resolve(getTodaysEventsLocations());
     let promiseTimes =  Promise.resolve(getTodaysEventsTimes());
+    let promiseCategories = Promise.resolve(getTodaysEventsCategories());
+    let promisePictures = Promise.resolve(getTodaysEventsPictures());
 
     let eventsNames = await promiseNames;
     let eventsDescriptions = await promiseDescriptions;
     let eventsLocations = await promiseLocations;
     let eventsTimes = await promiseTimes;
+    let eventsCategories = await promiseCategories;
+    let eventsPictures = await promisePictures;
 
     let EventListItems = [];
 
@@ -30,21 +36,31 @@ export async function createEventListItems(){
         
         let eventLocation = (eventsLocations[i].name != undefined) ? 
             eventsLocations[i].name : eventLocation[i].location.street;
-
+        
         let eventDescription = eventsDescriptions[i];
-        eventDescription = eventDescription.replace(/ +(?= )/g,'');
-        eventDescription = eventDescription.replace(/\r?\n|\r/g, ' ');
+        
+        let compactEventDescription = eventsDescriptions[i];
+        compactEventDescription = compactEventDescription.replace(/ +(?= )/g,'');
+        compactEventDescription = compactEventDescription.replace(/\r?\n|\r/g, ' ');
 
-        if(eventDescription == "<NONE>")
-            eventDescription = "";
+        if(compactEventDescription == "<NONE>")
+            compactEventDescription = "";
 
         
+
+        let eventCategory = eventsCategories[i];
+
+        if(eventCategory == "<NONE>")
+            eventCategory = "Any";
 
         EventListItems.push(<EventListItem
             name={eventsNames[i]}
             description={eventDescription}
+            compactdescription={compactEventDescription}
             location={eventLocation}
             time={eventTimeInterval}
+            category={eventCategory}
+            picture={eventsPictures[i]}
             >
             </EventListItem>);
     }

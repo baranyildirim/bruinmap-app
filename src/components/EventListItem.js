@@ -1,58 +1,122 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, TouchableOpacity, LinearGradient } from 'react-native';
+import { 
+    View, 
+    Text, 
+    ActivityIndicator, 
+    StyleSheet, 
+    TouchableOpacity, 
+    Image 
+} from 'react-native';
 
 export default class EventListItem extends Component {
     constructor(props){
         super(props);
         this.state = {
             name: props.name,
+            compactname: props.name,
             description: props.description,
+            compactdescription: props.compactdescription,
             location: props.location,
             timeInterval: props.time,
+            category: props.category,
+            picture: props.picture,
+            icon: null,
+            compact: true
         };
-    }
 
+        
+    }
     componentWillMount(){
-        if(this.state.name.length > 25)
-            this.setState({name: `${this.state.name.substr(0, 25)}...`});
-        if(this.state.description.length > 200)
-            this.setState({description: `${this.state.description.substr(0, 200)}...`});
+        if(this.state.compact){
+            if(this.state.compactname.length > 20)
+                this.setState({compactname: `${this.state.compactname.substr(0, 20)}...`});
+            if(this.state.compactdescription.length > 200)
+                this.setState({compactdescription: `${this.state.compactdescription.substr(0, 200)}...`});
+            switch (this.state.category){
+                case "THEATER": this.setState({icon: require('../assets/icons/THEATER.png') }); break;
+                case "COMEDY_PERFORMANCE": this.setState({icon: require('../assets/icons/COMEDY_PERFORMANCE.png') }); break;
+                case "FOOD": this.setState({icon: require('../assets/icons/FOOD.png') }); break;
+                case "MUSIC": this.setState({icon: require('../assets/icons/MUSIC.png') }); break;
+                case "PARTY": this.setState({icon: require('../assets/icons/PARTY.png') }); break;
+                default: this.setState({icon: require('../assets/icons/ANY.png') }); break;
+            }
+        }
+        console.log("picture", this.state.picture )
     }
     render(){
-        return(
-
-            <TouchableOpacity style={styles.listView}>
-                <View style={styles.titleView}>
-                    <View style={styles.nameView}><Text style={styles.nameText}>{`${this.state.name}`}</Text></View>
-                    <View style={styles.timeView}><Text style={styles.timeText}>{this.state.timeInterval}</Text></View>
-                </View>
-                <View style={{flex: 1}}><Text style={styles.locationText}>{this.state.location}</Text></View>
-                <Text style={styles.descriptionText}>{this.state.description}</Text>
-            </TouchableOpacity>
-
-
-        );
+        if(this.state.compact){
+            return(
+                <TouchableOpacity style={compactStyles.listView} onPress={() => {
+                    this.setState({compact: false});
+                }}>
+                    <View style={compactStyles.innerContainer}>
+                        <View style={compactStyles.iconContainer}>
+                            <Image 
+                             style={{width: 50, height: 50}}
+                             source={this.state.icon}
+                            />
+                        </View>
+                        <View style={compactStyles.textContainer}>
+                            <View style={compactStyles.titleView}>
+                                <View style={compactStyles.nameView}><Text style={compactStyles.nameText}>{`${this.state.compactname}`}</Text></View>
+                                <View style={compactStyles.timeView}><Text style={compactStyles.timeText}>{this.state.timeInterval}</Text></View>
+                            </View>
+                            <View style={{flex: 1}}><Text style={compactStyles.locationText}>{this.state.location}</Text></View>
+                            <Text style={compactStyles.descriptionText}>{this.state.compactdescription}</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>);
+        }
+        else{
+            return(
+                <TouchableOpacity style={expandedStyles.expandedListView} onPress={() => {
+                    this.setState({compact: true});
+                }}>
+                    <View style={expandedStyles.innerContainer}>
+                        <Text style={expandedStyles.nameText}>{this.state.name}</Text>
+                        <Text style={expandedStyles.timeText}>{this.state.timeInterval}</Text>
+                        <Text style={expandedStyles.locationText}>{this.state.location}</Text>
+                        <View style={expandedStyles.pictureView}>
+                        <Image style={expandedStyles.picture} 
+                        resizeMode="stretch"
+                        source={{uri: `${this.state.picture}`}}/>
+                        </View>
+                        <Text style={expandedStyles.descriptionText}>{this.state.description}</Text>
+                    </View>
+                </TouchableOpacity>
+            );
+        }
     }
 }
 
-const styles = StyleSheet.create({
+const compactStyles = StyleSheet.create({
     listView:{ //Most outer layer
-        flexDirection: 'column',
-        //borderBottomWidth: 0.3,
-        //borderRightWidth: 0.3,
-        //borderLeftWidth: 0.3,
-        borderRadius: 2,
-        //borderColor: '#d6d7da',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        backgroundColor:'white',
+        borderBottomColor: 'black',
         alignItems: 'stretch',
-        paddingLeft: 20,
-        paddingRight: 20,
-        backgroundColor: 'white',
-        marginBottom: 15,
-        paddingBottom: 10,
-    },  
+        elevation: 0,
+        padding: 15,
+        flex: 1,
+    },
+    innerContainer:{
+        flex: 1,
+        flexDirection: 'row',
+        alignItems:'center',    
+    },
+    iconContainer:{
+        flex: 1,
+    },
+    icon:{
+        width: 30,
+        height: 50,
+    },
+    textContainer:{
+        flexDirection: 'column',
+        flex: 4,
+    },
     titleView:{ // View containing event name and time
         flexDirection: 'row',
-        marginTop: 10,
         alignItems:'flex-end',
         flex: 1,
     },
@@ -66,9 +130,9 @@ const styles = StyleSheet.create({
     },
     nameText:{ // Style for event name
         fontSize: 15,
-        color: 'black',
-        fontFamily: 'Roboto',
-
+        fontWeight: 'normal',
+        fontFamily: 'sans-serif-light',
+        color: 'black'
     },
     timeText:{
         fontSize: 10
@@ -79,9 +143,53 @@ const styles = StyleSheet.create({
     descriptionText:{
         fontSize: 8
     },
-    shadow: {
-        left: 0,
-        right: 0,
-        height: 4,
+    pictureView:{
+        flex: 1
+    },
+
+});
+
+const expandedStyles = StyleSheet.create({
+    expandedListView:{
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        backgroundColor:'white',
+        borderBottomColor: 'black',
+        alignItems: 'stretch',
+        elevation: 0,
+        padding: 15,
+        flex: 1
+    }, 
+    nameText:{
+        fontSize: 25,
+        fontWeight: 'normal',
+        fontFamily: 'sans-serif-light',
+        color: 'black'
+    },
+    timeText:{
+        fontSize: 17,
+        color: 'black'
+    },
+    locationText:{
+        fontSize: 17,
+        color: 'black'
+    },
+    picture:{
+        flex: 1,
+        height: 150,
+        width: undefined,
+        marginTop: 10,
+        marginBottom: 10,
+        borderRadius: 5,
+    },
+    pictureView:{
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+      
+    },
+    descriptionText:{
+        color: 'black'
     }
+
 });

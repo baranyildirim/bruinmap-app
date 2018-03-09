@@ -1,17 +1,20 @@
 import React from 'react';
 
-var today = new Date()
-//console.log(today);
-var date = `${today.getMonth()+1}.${today.getDate()}.${today.getFullYear()}`;
-//console.log(date);
-var apiUrl = `http://api.ucladevx.com/events/event-date/${date}`;
 
 
-function getTodaysEventsFromApi(){
+function getTodaysEventsFromApi(date){
+    var dateInput = new Date();
+
+    if(date != undefined)
+        dateInput = date;
+
+    var dateString = `${dateInput.getMonth()+1}.${dateInput.getDate()}.${dateInput.getFullYear()}`;
+    var apiUrl = `http://api.ucladevx.com/events/event-date/${dateString}`;
+
     return fetch(apiUrl)
       .then((response) => response.json())
       .then((responseJson) => {
-        //console.log(responseJson.features);
+        console.log(responseJson.features);
         return responseJson.features;
       })
       .catch((error) => {
@@ -19,24 +22,20 @@ function getTodaysEventsFromApi(){
       });
 }
 
-export async function getTodaysEventsCoordinates(){
-    var promise = Promise.resolve(getTodaysEventsFromApi());
+export async function getTodaysEventsCoordinates(date){
+    var promise = Promise.resolve(getTodaysEventsFromApi(date));
     var result = await promise;
     console.log("result", result);
     var events = new Array();
 
     for(var i = 0; i < result.length; i++){
-        let marker = new Object();
-        marker.coordinates = result[i].geometry.coordinates;
-        events.push(marker);
+        events.push(result[i].geometry.coordinates);
     }
-    //console.log(marker);
-    //console.log(events);
     return events;
 }
 
-export async function getTodaysEventsNames(){
-   var promise = Promise.resolve(getTodaysEventsFromApi());
+export async function getTodaysEventsNames(date){
+   var promise = Promise.resolve(getTodaysEventsFromApi(date));
    var result = await promise;
    var events = new Array();
 
@@ -47,8 +46,8 @@ export async function getTodaysEventsNames(){
    return events;
 }
 
-export async function getTodaysEventsDescriptions(){
-    var promise = Promise.resolve(getTodaysEventsFromApi());
+export async function getTodaysEventsDescriptions(date){
+    var promise = Promise.resolve(getTodaysEventsFromApi(date));
     var result = await promise;
     var events = new Array();
  
@@ -59,8 +58,8 @@ export async function getTodaysEventsDescriptions(){
     return events;
 }
 
-export async function getTodaysEventsTimes(){
-    var promise = Promise.resolve(getTodaysEventsFromApi());
+export async function getTodaysEventsTimes(date){
+    var promise = Promise.resolve(getTodaysEventsFromApi(date));
     var result = await promise;
     var events = new Array();
  
@@ -95,8 +94,8 @@ export async function getTodaysEventsTimes(){
     return events;
 }
 
-export async function getTodaysEventsLocations(){
-    var promise = Promise.resolve(getTodaysEventsFromApi());
+export async function getTodaysEventsLocations(date){
+    var promise = Promise.resolve(getTodaysEventsFromApi(date));
     var result = await promise;
     var events = new Array();
  
@@ -106,6 +105,33 @@ export async function getTodaysEventsLocations(){
     }
     return events;
 }
+
+export async function getTodaysEventsCategories(date){
+    var promise = Promise.resolve(getTodaysEventsFromApi(date));
+    var result = await promise;
+    var events = new Array();
+ 
+    for(var i = 0; i < result.length; i++){
+        let eventCategory = result[i].properties.category;
+        events.push(eventCategory);
+    }
+    return events;
+}
+
+
+export async function getTodaysEventsPictures(date){
+    var promise = Promise.resolve(getTodaysEventsFromApi(date));
+    var result = await promise;
+    var events = new Array();
+ 
+    for(var i = 0; i < result.length; i++){
+        let eventPicture = result[i].properties.cover_picture;
+        events.push(eventPicture);
+    }
+    return events;
+}
+
+
 
 
 

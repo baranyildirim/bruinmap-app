@@ -1,64 +1,48 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import Map from './components/Map';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
 import AppHeader from './components/AppHeader';
-import EventList from './components/EventList';
+import Drawer from 'react-native-drawer'
+import ControlPanel from './components/ControlPanel';
+import TabNav from './components/TabNav';
 
 
-class MapScreen extends Component {
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <AppHeader/>
-        <Map/>
-      </View>
+export default class App extends Component {
+  state = {
+    date: new Date(),
+  }
+
+  changeDate(newDate){
+    console.log("Date received by App");
+    this.setState({date: newDate});
+  }
+
+  render(){
+    return(
+      <Drawer 
+      ref={(ref) => this.ControlPanel = ref}
+      type="overlay"
+      content={<ControlPanel 
+      closeDrawer ={() => {this.ControlPanel.close();}}
+      />}
+      tapToClose={true}
+      negotiatePan={true}
+      openDrawerOffset={0.2} // 20% gap on the right side of drawer
+      panCloseMask={0.2}
+      closedDrawerOffset={-3}
+      elevation={9}
+      tweenHandler={(ratio) => ({
+        main: { opacity:(2-ratio)/2 }
+      })}
+      >
+      <AppHeader
+      openDrawer={() => {this.ControlPanel.open();}}
+      changeDate={this.changeDate.bind(this)}
+      />
+      <TabNav
+      ref={(ref) => this.TabNav = ref}
+      screenProps={{date: this.state.date}}
+      />
+      </Drawer>
     );
   }
 }
-
-class ListScreen extends Component {
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <AppHeader/>
-        <EventList/>
-      </View>
-    );
-  }
-}
-
-export default TabNavigator(
-  {
-    Map: { screen: MapScreen },
-    List: { screen: ListScreen },
-  },
-  {
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === 'Map') {
-          iconName = `ios-map${focused ? '' : '-outline'}`;
-        } else if (routeName === 'List') {
-          iconName = `ios-list${focused ? '' : '-outline'}`;
-        }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
-        return <Ionicons name={iconName} size={30} color={tintColor} />;
-      },
-    }),
-    tabBarOptions: {
-      activeTintColor: 'black',
-      inactiveTintColor: 'gray',
-      showLabel: false
-    },
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: 'bottom',
-    animationEnabled: false,
-    swipeEnabled: false,
-  }
-);
-
