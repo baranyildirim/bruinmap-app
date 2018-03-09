@@ -29,8 +29,8 @@ class ListScreen extends Component {
   }
 
   componentWillReceiveProps(nextProp){
-    console.log("Date received by MapScreen", nextProp.screenProps);
-    this.setState({date: nextProp});
+    console.log("Date received by ListScreen", nextProp.screenProps);
+    this.List.changeDate(nextProp.screenProps.date);
   }
     
   render() {

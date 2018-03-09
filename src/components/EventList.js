@@ -10,14 +10,24 @@ export default class EventList extends Component {
         this.state = {
           loaded: 'false',
           EventListItems : [],
+          date: new Date(),
         };
       }
 
+    changeDate(newDate){
+        console.log("Date received by Map", newDate);
+        this.setState({date: newDate, loaded: 'false'});
+        createEventListItems(newDate).then((result)=>{
+            this.setState({EventListItems: result});
+            this.setState({loaded: 'true'});
+          });
+    }
+
     componentWillMount() {
-        createEventListItems().then((result)=>{
+        createEventListItems(this.state.date).then((result)=>{
           this.setState({EventListItems: result});
           this.setState({loaded: 'true'});
-        })
+        });
       }
 
     render(){

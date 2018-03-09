@@ -9,13 +9,13 @@ import {getTodaysEventsDescriptions,
         } from '../utils/events';
 import EventListItem from '../components/EventListItem';
 
-export async function createEventListItems(){
-    let promiseNames = Promise.resolve(getTodaysEventsNames());
-    let promiseDescriptions = Promise.resolve(getTodaysEventsDescriptions());
-    let promiseLocations = Promise.resolve(getTodaysEventsLocations());
-    let promiseTimes =  Promise.resolve(getTodaysEventsTimes());
-    let promiseCategories = Promise.resolve(getTodaysEventsCategories());
-    let promisePictures = Promise.resolve(getTodaysEventsPictures());
+export async function createEventListItems(date){
+    let promiseNames = Promise.resolve(getTodaysEventsNames(date));
+    let promiseDescriptions = Promise.resolve(getTodaysEventsDescriptions(date));
+    let promiseLocations = Promise.resolve(getTodaysEventsLocations(date));
+    let promiseTimes =  Promise.resolve(getTodaysEventsTimes(date));
+    let promiseCategories = Promise.resolve(getTodaysEventsCategories(date));
+    let promisePictures = Promise.resolve(getTodaysEventsPictures(date));
 
     let eventsNames = await promiseNames;
     let eventsDescriptions = await promiseDescriptions;
@@ -45,6 +45,9 @@ export async function createEventListItems(){
 
         if(compactEventDescription == "<NONE>")
             compactEventDescription = "";
+
+        if(eventDescription == "<NONE>")
+            eventDescription = "";
 
         
 
