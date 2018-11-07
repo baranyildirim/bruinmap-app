@@ -2,8 +2,9 @@
 Mobile application built with React-Native, aimed to help UCLA students keep track of and attend events on campus.
 Fetches events at UCLA using [UCLA DevX API](http://api.ucladevx.com)
 
-#NOTE: This project is no longer in development due to Facebook API changes that have made it much harder to get event data.
-#They have also made a great alternative to this app: https://www.facebook.com/local/
+# NOTE: This project is no longer in development due to Facebook API changes that have made it much harder to get event data.
+
+# They have also made a great alternative to this app: https://www.facebook.com/local/
  
 
 Current features and ones to be implemented:
